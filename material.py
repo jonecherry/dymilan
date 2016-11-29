@@ -18,14 +18,15 @@ class Material(object):
     # 上传
     def uplaod(self, accessToken, filePath, mediaType):
 
-        openFile = open(filePath, "rb")
-        param = {'media': openFile}
-        postData, postHeaders = poster.encode.multipart_encode(param)
+        file = {'media': open(filePath, "rb")}
+        # postData, postHeaders = poster.encode.multipart_encode(param)
 
         postUrl = "https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=%s&type=%s" % (accessToken, mediaType)
-        request = urllib2.Request(postUrl, postData, postHeaders)
-        urlResp = urllib2.urlopen(request)
-        print urlResp.read()
+        res = requests.post(postUrl,file)
+        print res.text
+        # request = urllib2.Request(postUrl, postData, postHeaders)
+        # urlResp = urllib2.urlopen(request)
+        # print urlResp.read()
 
     def get(self, accessToken, mediaId):
         postUrl = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=%s&media_id=%s" % (accessToken, mediaId)

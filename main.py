@@ -2,6 +2,7 @@
 # filename: main.py
 import web
 from handle import Handle
+from homepage import homepage
 
 urls = (
     '/wx', 'Handle',
@@ -9,9 +10,7 @@ urls = (
 )
 
 
-class homepage(object):
-    def GET(self):
-        return " 这里是米兰居家"
+
 
 if __name__ == '__main__':
     app = web.application(urls, globals())
