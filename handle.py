@@ -35,9 +35,10 @@ class Handle(object):
     def POST(self):
         try:
             webData = web.data()
-            print "Handle Post webdata is ", webData  # 后台打日志
+            # print "Handle Post webdata is ", webData  # 后台打日志
             recMsg = receive.parse_xml(webData)
             if isinstance(recMsg, receive.Msg):
+                print '1'
                 toUser = recMsg.FromUserName
                 fromUser = recMsg.ToUserName
                 if recMsg.MsgType == 'text':
@@ -49,6 +50,7 @@ class Handle(object):
                     replyMsg = reply.ImageMsg(toUser, fromUser, mediaId)
                     return replyMsg.send()
             if isinstance(recMsg, receive.EventMsg):
+                print '2'
                 if recMsg.Event == 'CLICK':
                     if recMsg.Eventkey == 'mpGuide':
                         content = u"编写中，尚未完成".encode('utf-8')
