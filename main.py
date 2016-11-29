@@ -2,11 +2,10 @@
 # filename: main.py
 import web
 from handle import Handle
-from homepage import homepage
+
 
 urls = (
-    '/wx', 'Handle',
-    '/','homepage',
+    '/', 'Handle',
 )
 
 
